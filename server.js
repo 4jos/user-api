@@ -16,11 +16,14 @@ app.use(passport.initialize());
 let ExtractJwt = passportJWT.ExtractJwt;
 let JwtStrategy = passportJWT.Strategy;
 
-let jwtOptions = {};
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
+let jwtOptions = {
 
-jwtOptions.secretOrKey = process.env.JWT_SECRET;
+    jwtFromRequest : ExtractJwt.fromAuthHeaderWithScheme('jwt'),
 
+    secretOrKey : process.env.JWT_SECRET
+};
+ 
+ 
 
 let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
     console.log('payload received', jwt_payload);
