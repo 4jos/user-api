@@ -12,10 +12,16 @@ app.use(express.json());
 app.use(cors());
 app.use(passport.initialize());
 
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+    
+    next();
+});
+
 
 let ExtractJwt = passportJWT.ExtractJwt;
 let JwtStrategy = passportJWT.Strategy;
-
+console.log(process.env.JWT_SECRET);
 let jwtOptions = {
 
     jwtFromRequest : ExtractJwt.fromAuthHeaderWithScheme('jwt'),
@@ -24,7 +30,7 @@ let jwtOptions = {
 };
  
  
-
+ 
 let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
     console.log('payload received', jwt_payload);
   
