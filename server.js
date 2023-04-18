@@ -12,11 +12,11 @@ app.use(express.json());
 app.use(cors());
 app.use(passport.initialize());
 
-app.use(function (req, res, next) {
+/*app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "http://localhost:3000");
     
     next();
-});
+});*/
 
 
 let ExtractJwt = passportJWT.ExtractJwt;
